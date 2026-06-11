@@ -17,7 +17,7 @@ export default function Footer() {
                             <img src="/logo.svg" alt="logo" className="size-6" />
                             <span className="font-medium font-serif text-xl text-gray-800">Scheduler</span>
                         </Link>
-                        <p className="text-sm text-gray-500 leading-relaxed max-w-xs">The AI-powered social media scheduler that helps creators and teams grow faster with less effort.</p>
+                        <p className="text-sm text-gray-500 leading-relaxed max-w-xs">The AI-poweblue social media scheduler that helps creators and teams grow faster with less effort.</p>
                     </div>
 
                     {/* Links */}

@@ -24,7 +24,7 @@ export default function Navbar() {
                 </div>
 
                 {user ? (
-                    <Link to="/dashboard" className="flex items-center gap-1.5 text-sm font-medium bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full shadow-sm hover:shadow-red-200 hover:shadow-md">
+                    <Link to="/dashboard" className="flex items-center gap-1.5 text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow-sm hover:shadow-blue-200 hover:shadow-md">
                         Go to Dashboard <ArrowRightIcon className="size-3.5" />
                     </Link>
                 ) : (
@@ -32,7 +32,7 @@ export default function Navbar() {
                         <Link to="/login" className="text-sm text-slate-600 hover:text-slate-900 hidden sm:block">
                             Sign In
                         </Link>
-                        <Link to="/login" className="flex items-center gap-1.5 text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full shadow-sm hover:shadow-red-200 hover:shadow-md">
+                        <Link to="/login" className="flex items-center gap-1.5 text-sm bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow-sm hover:shadow-blue-200 hover:shadow-md">
                             Get Started <ArrowRightIcon className="size-3.5" />
                         </Link>
                     </div>

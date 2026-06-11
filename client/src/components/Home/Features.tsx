@@ -5,38 +5,38 @@ const features = [
         icon: CalendarDaysIcon,
         title: "Smart Scheduling",
         description: "Queue posts across all platforms with a single click. Set it once and let us handle the rest.",
-        color: "bg-red-50 text-red-500",
+        color: "bg-blue-50 text-blue-500",
     },
     {
         icon: Wand2Icon,
         title: "AI Content Generator",
         description: "Generate on-brand captions and stunning images with our built-in AI. Never stare at a blank page again.",
-        color: "bg-red-50 text-red-500",
+        color: "bg-blue-50 text-blue-500",
     },
 
     {
         icon: BarChart3Icon,
         title: "Activity Dashboard",
         description: "Get a bird's eye view of all published posts, scheduled content, and engagement activity in one place.",
-        color: "bg-red-50 text-red-500",
+        color: "bg-blue-50 text-blue-500",
     },
     {
         icon: Share2Icon,
         title: "Multi-Platform",
         description: "Connect Twitter, LinkedIn, Facebook, and Instagram. Post everywhere from one unified workspace.",
-        color: "bg-red-50 text-red-500",
+        color: "bg-blue-50 text-blue-500",
     },
     {
         icon: ZapIcon,
         title: "Instant Publishing",
         description: "Need to go live now? Publish immediately or schedule for peak engagement times with full timezone support.",
-        color: "bg-red-50 text-red-500",
+        color: "bg-blue-50 text-blue-500",
     },
     {
         icon: HashIcon,
         title: "Hashtag Suggestions",
-        description: "Get AI-powered hashtag suggestions to reach a wider audience.",
-        color: "bg-red-50 text-red-500",
+        description: "Get AI-poweblue hashtag suggestions to reach a wider audience.",
+        color: "bg-blue-50 text-blue-500",
     },
 ];
 
@@ -45,14 +45,14 @@ export default function Features() {
         <section id="features" className="py-24 bg-slate-50">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 <div className="text-center mb-16">
-                    <div className="mb-6 inline-flex items-center gap-1.5 bg-red-500/10 border border-red-500/15 text-red-500 text-[11px] font-medium tracking-[0.06em] uppercase px-3.5 py-1.5 rounded-full">
+                    <div className="mb-6 inline-flex items-center gap-1.5 bg-blue-500/10 border border-blue-500/15 text-blue-500 text-[11px] font-medium tracking-[0.06em] uppercase px-3.5 py-1.5 rounded-full">
                         <ZapIcon className="size-3" />
                         Everything you need
                     </div>
                     <h2 className="font-serif text-4xl sm:text-5xl font-medium leading-tight text-gray-900">
                         Automate your entire
                         <br />
-                        <span className="text-red-400 italic">social media workflow</span>
+                        <span className="text-blue-400 italic">social media workflow</span>
                     </h2>
                     <p className="mt-5 text-gray-500 max-w-xl mx-auto leading-relaxed">From content creation to scheduling — Scheduler handles it all so you can focus on what matters most.</p>
                 </div>
