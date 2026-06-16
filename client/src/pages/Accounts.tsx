@@ -1,38 +1,37 @@
 import { PlusIcon } from "lucide-react"
 import { useEffect, useState } from "react"
-import { dummyAccountsData } from "../assets/assets"
+import { dummyAccountsData, PLATFORMS } from "../assets/assets"
 import PlatformPickerModal from "../components/PlatformPickerModal"
+import AccountList from "../components/AccountList"
 
 const Accounts = () => {
-   const [accounts, setAccounts] = useState<any[]>([])
-    const [connecting, setConnecting] = useState<string | null>(null)
-    const [showPlatformPicker, setShowPlatformPicker] = useState(false)
+  const [accounts, setAccounts] = useState<any[]>([])
+  const [connecting, setConnecting] = useState<string | null>(null)
+  const [showPlatformPicker, setShowPlatformPicker] = useState(false)
 
-    const fetchAccounts = async (isSync = false, platform?: string | null, successMsg?: string) => {
-      setAccounts(dummyAccountsData);
-      console.log(isSync, platform, successMsg)
-    }
+  const fetchAccounts = async (isSync = false, platform?: string | null, successMsg?: string) => {
+    setAccounts(dummyAccountsData);
+    console.log(isSync, platform, successMsg)
+  }
 
-    useEffect(()=>{
-      fetchAccounts()
-    },[])
+  useEffect(() => {
+    fetchAccounts()
+  }, [])
 
-    const handleConnect = async (platformId: string) => {
-      setConnecting(platformId);
-      setTimeout(()=>{
-        setConnecting(null)
-        setAccounts((prev)=> [...prev, dummyAccountsData[0]])
-        setShowPlatformPicker(false)
+  const handleConnect = async (platformId: string) => {
+    setConnecting(platformId);
+    setTimeout(() => {
+      setConnecting(null)
+      setAccounts((prev) => [...prev, dummyAccountsData[0]])
+      setShowPlatformPicker(false)
+    }, 1000)
+  }
 
-      },1000)
-    }
-    
-    const handleDisconnect = async (accountId: string) => {
-      setAccounts(accounts.filter((a)=>a._id !== accountId))
-    }
+  const handleDisconnect = async (accountId: string) => {
+    setAccounts(accounts.filter((a) => a._id !== accountId))
+  }
 
-    const connectedIds = accounts.map((a)=>a.platform)
-
+  const connectedIds = accounts.map((a) => a.platform)
 
   return (
     <div className="space-y-8 max-w-4xl">
@@ -43,24 +42,25 @@ const Accounts = () => {
           <p className="text-slate-500 text-sm mt-0.5">{accounts.length} of {PLATFORMS.length} platforms connected</p>
         </div>
         <button 
-        onClick={()=> setShowPlatformPicker(true)}
-        className="flex items-center gap-2 px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-medium
-        transition-all w-full sm:w-auto justify-center">
+          onClick={() => setShowPlatformPicker(true)}
+          className="flex items-center gap-2 px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-medium transition-all w-full sm:w-auto justify-center"
+        >
           <PlusIcon className="size-4" /> Connect Account
         </button>
       </div>
 
-
-
       {/* PLATFORM PICKER MODAL */}
-      {showPlatformPicker && <PlatformPickerModal connectedIds={connectedIds} connecting={connecting} onClose={
-        ()=> setShowPlatformPicker(false)} onConnect={handleConnect}
-      />}
+      {showPlatformPicker && (
+        <PlatformPickerModal 
+          connectedIds={connectedIds} 
+          connecting={connecting} 
+          onClose={() => setShowPlatformPicker(false)} 
+          onConnect={handleConnect}
+        />
+      )}
 
       {/* CONNECTED ACCOUNTS LIST */}
       <AccountList accounts={accounts} onDisconnect={handleDisconnect} />
-
-      
     </div>
   )
 }
