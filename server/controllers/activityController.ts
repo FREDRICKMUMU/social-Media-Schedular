@@ -5,14 +5,12 @@ import { ActivityLog } from "../models/ActivityLog.js";
 //GET ALL ACTIVITY
 //GET /api/activity
 
-import { AuthRequest } from "../middlewares/authMiddleware.js";
-
-export const getActivity = async (req:AuthRequest, res: Response): Promise<void> => {
+export const getActivity = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        await ActivityLog.find({user: req.user._id}).sort({createdAt: -1}).
-        limit(10).populate("relatedPost", "content");
+        const activity = await ActivityLog.find({user: req.user._id}).sort({createdAt: -1})
+        .limit(10).populate("relatedPost", "content");
         res.json(activity)
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({message: error?.message || "Server error"});
     }
 }

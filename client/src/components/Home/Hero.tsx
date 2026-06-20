@@ -19,9 +19,8 @@ export default function Hero() {
 
                 {/* Headline */}
                 <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-slate-900">
-                    Schedule smarter.
-                    <br />
-                    <span className="text-blue-400 italic">Grow faster.</span>
+             Schedule with purpose.<br />
+                    <span className="text-blue-400 italic">Scale smarter.</span>
                 </h1>
 
                 {/* Subheadline */}

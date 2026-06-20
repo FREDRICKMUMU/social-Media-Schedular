@@ -1,14 +1,10 @@
 import { CalendarDaysIcon, LayoutDashboardIcon, LogOutIcon, UsersIcon, Wand2Icon } from "lucide-react"
 import { NavLink, useLocation } from "react-router-dom"
+import { useAuth } from "../../context/AuthContext"
 
 const Sidebar = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (val: boolean) => void }) => {
   
-  const {logout, user} = {
-    logout: ()=>{
-      window.location.href = "/";
-    },
-    user: {name: "Fred Munyao", email: "fredmunyao@example.com"}
-  }
+  const {logout, user} = useAuth()
 
   const location = useLocation()
   
@@ -27,7 +23,7 @@ const Sidebar = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (val: bool
       {/* LOGO */}
       <div className="p-6 pb-4">
         <div className="text-xl tracking-tight text-slate-800 flex items-center gap-1.5">
-          <img src="/logo.svg" alt="logo" className="size-6" />
+          <img src="/logo.sv" alt="logo" className="size-6" />
           Scheduler
         </div>
       </div>

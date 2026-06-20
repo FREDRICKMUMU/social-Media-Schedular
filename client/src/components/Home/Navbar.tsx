@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import { ArrowRightIcon } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Navbar() {
-    const { user } = { user: false };
+    const { user } = useAuth();
 
     return (
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-100">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
                 <Link to="/" onClick={() => scrollTo(0, 0)} className="flex items-center gap-2 ">
-                    <img src="/logo.svg" alt="logo" className="size-7" />
+                    <img src="/logo.png" alt="logo" className="size-7" />
                     <span className="text-xl lg:text-2xl font-medium font-serif text-slate-800">Scheduler</span>
                 </Link>
                 <div className="hidden md:flex items-center gap-8 text-sm text-slate-500">

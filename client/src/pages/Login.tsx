@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MailIcon, LockIcon, ArrowRightIcon, User2Icon } from "lucide-react";
-
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
+import api from "../api/axios";
 export default function Login() {
     const [loginState, setLoginState] = useState(true);
     const [name, setName] = useState("");
@@ -9,15 +11,25 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const {login, user} = useAuth()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            navigate("/dashboard");
-        }, 1000);
+        try {
+            const {data} = await api.post(`/api/auth/${loginState ? "login" : "register"}`, {name, email, password})
+            login(data, data.token)
+            navigate("/dashboard")
+        } catch (error: any) {
+            toast.error(error.response?.data?.message || error?.message)
+        } finally{
+            setLoading(false)
+        }
     };
+
+    useEffect(()=>{
+        if(user) navigate('/dashboard')
+    },[user])
 
     return (
         <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
@@ -25,7 +37,7 @@ export default function Login() {
                 <div className="bg-white rounded-2xl shadow-sm p-8">
                     <div className="flex flex-col items-center mb-8">
                         <Link to="/" className="flex items-center gap-2">
-                            <img src="/logo.svg" alt="Logo" className="size-6.5" />
+                            <img src="/logo.sv" alt="Logo" className="size-6.5" />
                             <h1 className="text-2xl">Scheduler</h1>
                         </Link>
                         <p className="text-slate-500 text-sm mt-1">Sign in to your Dashboard</p>
@@ -36,7 +48,7 @@ export default function Login() {
                                 <label className="block mb-1.5">Name</label>
                                 <div className="relative">
                                     <User2Icon className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-                                    <input type="text" requiblue placeholder="Enter your name" className="w-full pl-10 pr-4 py-2.5 bg-slate-50 outline-slate-300 border border-slate-200 rounded-full" value={name} onChange={(e) => setName(e.target.value)} />
+                                    <input type="text" required placeholder="Enter your name" className="w-full pl-10 pr-4 py-2.5 bg-slate-50 outline-slate-300 border border-slate-200 rounded-full" value={name} onChange={(e) => setName(e.target.value)} />
                                 </div>
                             </div>
                         )}
@@ -44,14 +56,14 @@ export default function Login() {
                             <label className="block mb-1.5">Email</label>
                             <div className="relative">
                                 <MailIcon className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-                                <input type="email" requiblue placeholder="you@company.com" className="w-full pl-10 pr-4 py-2.5 bg-slate-50 outline-slate-300 border border-slate-200 rounded-full" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="email" required placeholder="you@company.com" className="w-full pl-10 pr-4 py-2.5 bg-slate-50 outline-slate-300 border border-slate-200 rounded-full" value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                         </div>
                         <div>
                             <label className="block mb-1.5">Password</label>
                             <div className="relative">
                                 <LockIcon className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-                                <input type="password" requiblue placeholder="********" className="w-full pl-10 pr-4 py-2.5 bg-slate-50 outline-slate-300 border border-slate-200 rounded-full" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <input type="password" required placeholder="********" className="w-full pl-10 pr-4 py-2.5 bg-slate-50 outline-slate-300 border border-slate-200 rounded-full" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                         </div>
 
